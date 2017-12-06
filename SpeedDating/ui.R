@@ -6,10 +6,6 @@ my.ui <- fluidPage(
     titlePanel("Speed Dating Experiment"),
     
     sidebarPanel(
-        conditionalPanel(condition="input.conditionedPanels==2",
-                        helpText("Isaiah")
-            
-        ),
         conditionalPanel(condition="input.conditionedPanels==3",
                     
         div(style = "font-size: 30px; padding:10px;",
@@ -30,7 +26,6 @@ my.ui <- fluidPage(
         tabsetPanel( type = "tabs",
                      tabPanel("About", value = 1,
                               includeMarkdown("description.md")),
-                     tabPanel("Isaiah", value = 2),
                      tabPanel("Zach", value = 3,
                               plotOutput("graph")),
                      tabPanel("Darwin", value = 4),
