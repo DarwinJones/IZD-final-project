@@ -1,18 +1,10 @@
-##install.packages("plotly")
-##library(plotly)
 library(dplyr)
 library(shiny)
 library(ggplot2)
 
-colors <- c('rgb(211,94,96)', 
-            'rgb(128,133,133)', 
-            'rgb(144,103,167)', 
-            'rgb(171,104,87)', 
-            'rgb(114,147,203)')
+##setwd("C:/Users/zjrya/Desktop/INFO_201/IZD-final-project/SpeedDating/")
 
-##setwd("C:/Users/zjrya/Desktop/INFO_201/IZD-final-project/")
-
-data <- read.csv("./SpeedDating/data/genderData.csv")
+data <- read.csv("./data/genderData.csv")
 newColumns <- c("Attractive", "Sincere", "Intelligence", "Fun", "Ambitious", "Shared Interests")
 
 
@@ -46,7 +38,7 @@ my.server <- function(input,output)
                                        axis.text.x=element_blank(),
                                        axis.ticks.x=element_blank())
       }
-      if (input$Buttons == "What Men Think Women Want")
+      else if (input$Buttons == "What Men Think Women Want")
       {
         ggplot(data=dataMW, aes(x = newColumns, y = numbersMW, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
@@ -56,7 +48,7 @@ my.server <- function(input,output)
                                                   axis.text.x=element_blank(),
                                                   axis.ticks.x=element_blank())
       }
-      if (input$Buttons == "What Women Think Women Want")
+      else if (input$Buttons == "What Women Think Women Want")
       {
         ggplot(data=dataWW, aes(x = newColumns, y = numbersWW, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
@@ -66,7 +58,7 @@ my.server <- function(input,output)
                                                   axis.text.x=element_blank(),
                                                   axis.ticks.x=element_blank())
       }
-      if (input$Buttons == "What Women Think Men Want")
+      else (input$Buttons == "What Women Think Men Want")
       {
         ggplot(data=dataWM, aes(x = newColumns, y = numbersWM, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
