@@ -1,5 +1,7 @@
-library(shiny)
+#hosted: https://darwinjones.shinyapps.io/speeddating2/
 
+library(shiny)
+library(markdown)
 my.ui <- fluidPage(
     # page title
     titlePanel("Speed Dating Experiment"),
@@ -37,11 +39,6 @@ my.ui <- fluidPage(
                                      min = 1, 
                                      max = 10,
                                      value = 5),
-                         sliderInput("shared",
-                                     "Shared Interests",
-                                     min = 1, 
-                                     max = 10,
-                                     value = 5),
                          sliderInput("sincere",
                                      "Sincerity",
                                      min = 1, 
@@ -49,7 +46,8 @@ my.ui <- fluidPage(
                                      value = 5)
         )
     ),
-    
+    # 3 tabs. one gives info about data, the other gives gender preferences of the 6 attributes
+    # and the other compares Users and tries to predict their romantic success
     mainPanel(
         tabsetPanel( type = "tabs",
                      tabPanel("About", value = 1,

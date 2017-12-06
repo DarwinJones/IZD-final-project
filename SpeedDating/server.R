@@ -9,7 +9,7 @@ data <- read.csv("data/genderData.csv")
 
 newColumns <- c("Attractive", "Sincere", "Intelligence", "Fun", "Ambitious", "Shared Interests")
 
-
+# Create subsets of data needed. One for what each gender wants and what they think the other gender wants
 dataMM <- data[2, 15:20]
   colnames(dataMM) <- newColumns
   numbersMM <- as.numeric(dataMM[1,])
@@ -32,6 +32,8 @@ source("functions/ratingPlot.R")
 profileData <- read.csv("data/profileData.csv")
 
 my.server <- function(input,output) {
+    
+    # 1st tab. takes in button input and creates graph of the correct data
     output$graph <- renderPlot({
       if (input$Buttons == "What Men Want") {
         p <- ggplot(data=dataMM, aes(x = newColumns, y = numbersMM, fill = newColumns)) +
@@ -72,7 +74,7 @@ my.server <- function(input,output) {
       }
     })
   
-    # finds participant most like user
+    # finds participant most like the user
     closestMatch <- reactive({
     LSE(profileData, as.numeric(input$attractive),as.numeric(input$sincere),
         as.numeric(input$intel), as.numeric(input$fun),
@@ -80,13 +82,13 @@ my.server <- function(input,output) {
   })
 
   
-  #text report for matching stats
+  #text report for participant statistics
   output$amoreStats <- renderUI({
       #predicted percent match
       matchp <-  round(as.numeric(closestMatch()$matchPercent)*100,digits = 2)
       #predicted like %
       likep <- round(as.numeric(closestMatch()$pApproval)*100,digits = 2)
-      #predicted score out of 10
+      #General score given out of 10 by participants
       likenum <- round(as.numeric(closestMatch()$pLikePercent), digits = 1)
       str1 <- paste0("Your Match Percentage: ", matchp,"%")
       str2 <- paste0("Percent of Partners that would like you: ", likep, "%")
@@ -94,7 +96,7 @@ my.server <- function(input,output) {
       HTML(paste(str1, str2,str3, sep = '<br/>'))
   })
  
-    #plot
+    #plots what opposite gender rated the participant most like the user
   output$pJudge <- renderPlot({
       p <- ratingPlot(closestMatch)
       print(p)
