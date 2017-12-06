@@ -1,3 +1,5 @@
+
+
 library(dplyr)
 library(shiny)
 library(ggplot2)
@@ -29,7 +31,7 @@ dataWM <- data[1, 21:26]
 my.server <- function(input,output)
 {
     output$graph <- renderPlot({
-      if (as.character(input$Buttons) == "What Men Think Men Want")
+      if (input$Buttons == "What Men Think Men Want")
       {
         ggplot(data=dataMM, aes(x = newColumns, y = numbersMM, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
@@ -39,7 +41,7 @@ my.server <- function(input,output)
                                        axis.text.x=element_blank(),
                                        axis.ticks.x=element_blank())
       }
-      else if (as.character(input$Buttons) == "What Men Think Women Want")
+      else if (input$Buttons == "What Men Think Women Want")
       {
         ggplot(data=dataMW, aes(x = newColumns, y = numbersMW, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
@@ -49,7 +51,7 @@ my.server <- function(input,output)
                                                   axis.text.x=element_blank(),
                                                   axis.ticks.x=element_blank())
       }
-      else if (as.character(input$Buttons) == "What Women Think Women Want")
+      else if (input$Buttons == "What Women Think Women Want")
       {
         ggplot(data=dataWW, aes(x = newColumns, y = numbersWW, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
@@ -59,7 +61,7 @@ my.server <- function(input,output)
                                                   axis.text.x=element_blank(),
                                                   axis.ticks.x=element_blank())
       }
-      else (as.character(input$Buttons) == "What Women Think Men Want")
+      else (input$Buttons == "What Women Think Men Want")
       {
         ggplot(data=dataWM, aes(x = newColumns, y = numbersWM, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
