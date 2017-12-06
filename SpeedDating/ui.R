@@ -1,9 +1,9 @@
-
 library(shiny)
 
 my.ui <- fluidPage(
     # page title
     titlePanel("Speed Dating Experiment"),
+    
     sidebarPanel(
         conditionalPanel(condition="input.conditionedPanels==2",
                     
@@ -56,7 +56,7 @@ my.ui <- fluidPage(
                               includeMarkdown("description.md")),
                      tabPanel("Dating Preferences", value = 2,
                               plotOutput("graph")),
-                     tabPanel("Data-scope", value = 3,
+                     tabPanel("Dat-oroscope", value = 3,
                               h1("The Only Data Based Relationship Tester"),
                               h5("measure yourself (or a friend) by these 5 attributes"),
                               plotOutput("pJudge"),

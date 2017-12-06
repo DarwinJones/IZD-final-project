@@ -1,0 +1,13 @@
+name: speeddating
+title: SpeedDating
+username:
+account: jarwindones
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 245178
+bundleId: 1119128
+url: https://jarwindones.shinyapps.io/speeddating/
+when: 1512580115.92477
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|data/Speed Dating Data Key.doc|functions/CreateProfiles.R

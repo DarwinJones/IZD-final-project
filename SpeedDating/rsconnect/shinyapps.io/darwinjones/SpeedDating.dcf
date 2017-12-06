@@ -1,0 +1,12 @@
+name: SpeedDating
+title: SpeedDating
+username:
+account: darwinjones
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 245157
+bundleId: 1119089
+url: https://darwinjones.shinyapps.io/SpeedDating/
+when: 1512578964.20531
+asMultiple: FALSE
+asStatic: FALSE
