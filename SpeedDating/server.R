@@ -12,7 +12,7 @@ colors <- c('rgb(211,94,96)',
 
 ##setwd("C:/Users/zjrya/Desktop/INFO_201/IZD-final-project/")
 
-data <- read.csv("./SpeedDating/data/genderData.csv")
+data <- read.csv("data/genderData.csv")
 newColumns <- c("Attractive", "Sincere", "Intelligence", "Fun", "Ambitious", "Shared Interests")
 
 
