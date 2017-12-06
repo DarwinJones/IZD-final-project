@@ -7,5 +7,5 @@ This data was collected by Columbia Business School professors Ray Fisman and Sh
 See what each gender looks for in a romantic partner and what they think the other gender looks for.
 
 
-#### - Horoscopes for Data-Driven People
-Rate yourself based on the 6 attributes. We will find the test participant whose self assessment is most similar to yours and try to predict your romantic success. **Scientifically accurate**
+#### - Horoscopes for the Data-Driven
+Rate yourself based on the 6 attributes. We will find the test participant whose self assessment is most similar to yours and try to predict your romantic success. **Crunch the numbers before they crunch your heart.**

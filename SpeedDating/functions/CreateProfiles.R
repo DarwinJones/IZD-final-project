@@ -23,6 +23,6 @@ write.csv(profile, file = "profileData.csv")
 
 # crap I found an easier way to to that
 
-# Gives same data but grouped by gender
+# Gives same data but grouped by gender. a lot of useless data but we can just ignore it
 genderData <- profile %>% group_by(gender) %>% drop_na() %>% summarize_all(funs(mean))
 write.csv(genderData, file = "genderData.csv")

@@ -27,51 +27,84 @@ dataWM <- data[1, 21:26]
   colnames(dataWM) <- newColumns
   numbersWM <- as.numeric(dataWM[1,])
   dataWM <- data.frame(newColumns, numbersWM)
+  
+source("functions/LSE.R")
+source("functions/ratingPlot.R")
+profileData <- read.csv("data/profileData.csv")
 
-my.server <- function(input,output)
-{
+my.server <- function(input,output) {
     output$graph <- renderPlot({
-      if (input$Buttons == "What Men Think Men Want")
+      if (input$Buttons == "What Men Want")
       {
-        ggplot(data=dataMM, aes(x = newColumns, y = numbersMM, fill = newColumns)) +
+        p <- ggplot(data=dataMM, aes(x = newColumns, y = numbersMM, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
           geom_text(aes(label= round(numbersMM, digits = 2)), vjust=1.6, color="white", size=3.5)+
           theme_minimal() +
           labs(x = "", y = "", fill = "") + theme(axis.title.x=element_blank(),
                                        axis.text.x=element_blank(),
                                        axis.ticks.x=element_blank())
+        print(p)
       }
       else if (input$Buttons == "What Men Think Women Want")
       {
-        ggplot(data=dataMW, aes(x = newColumns, y = numbersMW, fill = newColumns)) +
+        p <- ggplot(data=dataMW, aes(x = newColumns, y = numbersMW, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
           geom_text(aes(label= round(numbersMW, digits = 2)), vjust=1.6, color="white", size=3.5)+
           theme_minimal() +
           labs(x = "", y = "", fill = "") + theme(axis.title.x=element_blank(),
                                                   axis.text.x=element_blank(),
                                                   axis.ticks.x=element_blank())
+        print(p)
       }
-      else if (input$Buttons == "What Women Think Women Want")
+      else if (input$Buttons == "What Women Want")
       {
-        ggplot(data=dataWW, aes(x = newColumns, y = numbersWW, fill = newColumns)) +
+        p <- ggplot(data=dataWW, aes(x = newColumns, y = numbersWW, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
           geom_text(aes(label= round(numbersWW, digits = 2)), vjust=1.6, color="white", size=3.5)+
           theme_minimal() +
           labs(x = "", y = "", fill = "") + theme(axis.title.x=element_blank(),
                                                   axis.text.x=element_blank(),
                                                   axis.ticks.x=element_blank())
+        print(p)
       }
       else (input$Buttons == "What Women Think Men Want")
       {
-        ggplot(data=dataWM, aes(x = newColumns, y = numbersWM, fill = newColumns)) +
+        p <- ggplot(data=dataWM, aes(x = newColumns, y = numbersWM, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
           geom_text(aes(label= round(numbersWM, digits = 2)), vjust=1.6, color="white", size=3.5)+
           theme_minimal() +
           labs(x = "", y = "", fill = "") + theme(axis.title.x=element_blank(),
                                                   axis.text.x=element_blank(),
                                                   axis.ticks.x=element_blank())
+          print(p)
       }
     })
   
+    # finds participant most like user
+    closestMatch <- reactive({
+    LSE(profileData, as.numeric(input$attractive),as.numeric(input$sincere),
+        as.numeric(input$intel), as.numeric(input$fun),
+        as.numeric(input$ambition))
+  })
+
   
+  #text report for matching stats
+  output$amoreStats <- renderUI({
+      #predicted percent match
+      matchp <-  round(as.numeric(closestMatch()$matchPercent)*100,digits = 2)
+      #predicted like %
+      likep <- round(as.numeric(closestMatch()$pApproval)*100,digits = 2)
+      #predicted score out of 10
+      likenum <- round(as.numeric(closestMatch()$pLikePercent), digits = 1)
+      str1 <- paste0("Your Match Percentage: ", matchp,"%")
+      str2 <- paste0("Percent of Partners that would like you: ", likep, "%")
+      str3 <- paste0("Total value as a human being: ", likenum,"/10")
+      HTML(paste(str1, str2,str3, sep = '<br/>'))
+  })
+ 
+    #plot
+  output$pJudge <- renderPlot({
+      p <- ratingPlot(closestMatch)
+      print(p)
+  })
 }
