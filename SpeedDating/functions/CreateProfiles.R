@@ -1,7 +1,8 @@
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 
 # No need to run again
-speeddate <- read.csv("Data/Speed Dating Data.csv")
+speeddate <- read.csv("./SpeedDating/data/Speed Dating Data.csv")
 
 # turns date data into table that give stats about individual participants
 # pRate is an average of partners ratings
@@ -11,7 +12,7 @@ profile <- speeddate %>% group_by(ID) %>% drop_na(pRatingAttractive, pRatingSinc
               pApproval = mean(partnerDecision), pLikePercent = mean(pLike),
               importanceRace = mean(imprace), importanceReligion = mean(imprelig), wantsAttr = mean(attr1_1), wantsSincere = mean(sinc1_1),
               wantsIntell = mean(intel1_1), wantsFun = mean(fun1_1), wantsAmb = mean(amb1_1), wantsShared = mean(shar1_1),
-              otherGenderWantsAttr = mean(attr2_1), otherGenderWantsIntell = mean(intel2_1), otherGenderWantsFun = mean(fun2_1),
+              otherGenderWantsAttr = mean(attr2_1), otherGenderWantsSincere = mean(sinc1_1), otherGenderWantsIntell = mean(intel2_1), otherGenderWantsFun = mean(fun2_1),
               otherGenderWantsAmb = mean(amb2_1), otherGenderWantsShared = mean(shar2_1), selfRateAttr = mean(attr3_1),
               selfRateSincere = mean(sinc3_1), selfRateIntell = mean(intel3_1), selfRateFun = mean(fun3_1),
               selfRateAmb = mean(amb3_1), sameGenderWantsAttr = mean(attr4_1), sameGenderWantsSincere = mean(sinc4_1),

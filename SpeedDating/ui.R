@@ -33,7 +33,7 @@ my.ui <- fluidPage(
                      tabPanel("About", value = 1,
                               includeMarkdown("description.md")),
                      tabPanel("Isaiah", value = 2),
-                     tabPanel("Zach", value = 3, graphOutput("graph")),
+                     tabPanel("Zach", value = 3),
                      tabPanel("Darwin", value = 4),
                      id = "conditionedPanels"
         )
