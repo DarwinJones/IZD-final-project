@@ -4,7 +4,8 @@ library(ggplot2)
 
 ##setwd("C:/Users/zjrya/Desktop/INFO_201/IZD-final-project/SpeedDating/")
 
-data <- read.csv("./data/genderData.csv")
+data <- read.csv("data/genderData.csv")
+
 newColumns <- c("Attractive", "Sincere", "Intelligence", "Fun", "Ambitious", "Shared Interests")
 
 
