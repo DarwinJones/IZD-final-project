@@ -4,7 +4,6 @@ library(shiny)
 my.ui <- fluidPage(
     # page title
     titlePanel("Speed Dating Experiment"),
-    
     sidebarPanel(
         conditionalPanel(condition="input.conditionedPanels==2",
                     

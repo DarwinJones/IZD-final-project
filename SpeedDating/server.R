@@ -34,8 +34,7 @@ profileData <- read.csv("data/profileData.csv")
 
 my.server <- function(input,output) {
     output$graph <- renderPlot({
-      if (input$Buttons == "What Men Want")
-      {
+      if (input$Buttons == "What Men Want") {
         p <- ggplot(data=dataMM, aes(x = newColumns, y = numbersMM, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
           geom_text(aes(label= round(numbersMM, digits = 2)), vjust=1.6, color="white", size=3.5)+
@@ -44,9 +43,7 @@ my.server <- function(input,output) {
                                        axis.text.x=element_blank(),
                                        axis.ticks.x=element_blank())
         print(p)
-      }
-      else if (input$Buttons == "What Men Think Women Want")
-      {
+      } else if (input$Buttons == "What Men Think Women Want") {
         p <- ggplot(data=dataMW, aes(x = newColumns, y = numbersMW, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
           geom_text(aes(label= round(numbersMW, digits = 2)), vjust=1.6, color="white", size=3.5)+
@@ -55,9 +52,7 @@ my.server <- function(input,output) {
                                                   axis.text.x=element_blank(),
                                                   axis.ticks.x=element_blank())
         print(p)
-      }
-      else if (input$Buttons == "What Women Want")
-      {
+      } else if (input$Buttons == "What Women Want") {
         p <- ggplot(data=dataWW, aes(x = newColumns, y = numbersWW, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
           geom_text(aes(label= round(numbersWW, digits = 2)), vjust=1.6, color="white", size=3.5)+
@@ -66,9 +61,7 @@ my.server <- function(input,output) {
                                                   axis.text.x=element_blank(),
                                                   axis.ticks.x=element_blank())
         print(p)
-      }
-      else (input$Buttons == "What Women Think Men Want")
-      {
+      } else {
         p <- ggplot(data=dataWM, aes(x = newColumns, y = numbersWM, fill = newColumns)) +
           geom_bar(stat="identity", width = 1) +
           geom_text(aes(label= round(numbersWM, digits = 2)), vjust=1.6, color="white", size=3.5)+
