@@ -1,5 +1,6 @@
 # This function calculates the least square error of users judgement of their attributes
 # and the participants of the survey and returns the row with the least difference
+library(dplyr)
 
 LSE <- function(profileData, attr, sinc, int, fun, amb) {
     calc <- profileData %>% mutate(LSE = (selfRateAttr - attr)^2 + 
